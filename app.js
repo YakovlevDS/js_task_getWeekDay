@@ -1,13 +1,21 @@
-// ? Реализуйте функцию calculator, которая принимает на вход арифметическое выражение и возвращает результат его вычисления Допустимые символы в input:числа, +, - , *, /.Если выражение содержит недопустимые символы - вывести в консоль Error
+// ? Напишите функцию getWeekDay(myDate), показывающую день недели в коротком формате: «ПН», «ВТ», «СР», «ЧТ», «ПТ», «СБ», «ВС».
 
-//* Solution
-const calculator = (input) => !input.replaceAll(/[0-9]|\+|\-|\*|\//g,'')?  console.log(eval(input)):console.log('Error')
+ 
 
-calculator('22+13') // 35
-calculator('10*10+244') // 344
-calculator('100-25-hello') // Error
-calculator('20+50+()=>{console.log("hello")}') // Error
+const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-// ! Обьяснение:
+const myDate = (year, day, month) => getWeekDay(new Date(year, day, month))
 
-// ** Этой строчкой input.replaceAll(/[0-9]|\+|\-|\*|\//g,'') заменяем все допустимые символы на пустые строки: если получаем в итоге пустую строку, выполняем наш код - eval(input), иначе выводим ошибку на консоль.
+const getWeekDay = date => days[date.getDay()];
+
+console.log( myDate(2021, 3, 8));    // Thursday
+console.log( myDate(2021, 23, 11));    // Sunday
+console.log( myDate(2021, 12, 12));    // Wednesday
+console.log( myDate(2021, 1, 7));// Sunday
+console.log( myDate(2021, 5, 2));  // Wednesday
+
+
+
+// ! Explanation:
+
+// ** Метод getDay() возвращает порядковый номер дня недели указанной даты по местному времени, где 0 соответствует воскресенью. Создадим массив дней недели, чтобы получить имя нужного дня по его номеру:
